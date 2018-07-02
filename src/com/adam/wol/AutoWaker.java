@@ -190,9 +190,14 @@ public class AutoWaker {
             Bundle trgrMAC   = readMac(br, "\tTrigger mac: "),
                    targetMAC = readMac(br, "\tTarget mac: ");
 
-            JSONObject mappings = config.getJSONObject("mappings");
+            InetAddress ipTarget = readIP(br, "\tTarget IP: ");
 
+            JSONObject mappings = config.getJSONObject("mappings");
             mappings.put(trgrMAC.stringMAC, targetMAC.stringMAC);
+
+            JSONObject devices = config.getJSONObject("devices");
+            
+            devices.put(targetMAC.stringMAC, targetIP.getHostAddress());
 
             saveConfig();
 
