@@ -62,8 +62,11 @@ public class AutoWaker {
             "         " +
             "    },\n" +
             "    \"mappings\": {\n" +
-            "        \"2c-30-33-29-7d-ef\": \"44-8a-5b-d5-f1-85\"\n" +
-                    "}, \"test\": \"hej\"" +
+            "        \"2c-30-33-29-7d-ef\": \"44-8a-5b-d5-f1-85\",\n" +
+                    "\"oj\": {" +
+                        "\"ico\": \"teraz\"" +
+                    "}" +
+                "}, \"test\": \"hej\"" +
             "}";
 
     private static final String ENCODING = "UTF-8";
@@ -292,7 +295,7 @@ public class AutoWaker {
 
     private static void saveConfig() {
         try (PrintWriter writer = new PrintWriter(CONFIG_FILE_NAME, ENCODING)){
-            String save = JsonHelper.mapToJsonObject(new JSONObject(DEFAULT_DEBUG_CONFIG).toMap());
+            String save = JsonHelper.mapToJsonObject(config.toMap());
 
             writer.println(save);
         } catch (Exception e) {
