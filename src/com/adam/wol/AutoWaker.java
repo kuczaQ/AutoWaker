@@ -197,13 +197,20 @@ public class AutoWaker {
 
             JSONObject mappings = config.getJSONObject("mappings");
 
-            JSONObject bundle   = new JSONObject("{" +
-                                                 "\"mac\":\"" + targetMAC.stringMAC + "\"," +
-                                                 "\"ip\":\"" + targetIP.getHostAddress() + "\"" +
-                                                 "}");
+            JSONObject bundle = new JSONObject("{\n" +
+                    "    \"mac\":\"" + targetMAC.stringMAC + "\",\n" +
+                    "    \"ip\":\"" + targetIP.getHostAddress() + "\"\n" +
+                    "}");
 
-            mappings.put(trgrMAC.stringMAC, bundle);
+            JSONArray targets = mappings.get(trgrMAC.stringMAC);
 
+            if (targets == null) {
+                targets = new JSONArray("[]");
+                targets.push(bundle);
+                mappings.put(trgrMAC.stringMAC, bundle);
+            } else {
+                // TODO push to array
+            }
             saveConfig();
 
         } catch (IOException e) {
