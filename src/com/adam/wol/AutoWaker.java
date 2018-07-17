@@ -188,6 +188,10 @@ public class AutoWaker {
         }
     }
 
+    private static boolean checkMACTrigger(String mac) {
+        
+    }
+
     private static void set() {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
             Bundle trgrMAC   = readMac(br, "\tTrigger MAC: "),
@@ -267,6 +271,11 @@ public class AutoWaker {
     }
 
     public static void listMappings() {
+        JSONObject mappings = config.get("mappings");
+
+        //for (int a = 0; a < mappings.lenght; a++) 
+
+
         String out = HexConverter.parseMAC(triggerMAC) +
                 " -> " +
                 HexConverter.parseMAC(targetMAC);
