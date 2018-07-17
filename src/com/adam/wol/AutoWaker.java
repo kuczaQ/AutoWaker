@@ -62,8 +62,11 @@ public class AutoWaker {
             "         " +
             "    },\n" +
             "    \"mappings\": {\n" +
-            "        \"2c-30-33-29-7d-ef\": \"44-8a-5b-d5-f1-85\"\n" +
-                    "}, \"test\": \"hej\"" +
+            "        \"2c-30-33-29-7d-ef\": \"44-8a-5b-d5-f1-85\",\n" +
+                    "\"oj\": {" +
+                        "\"ico\": \"teraz\"" +
+                    "}" +
+                "}, \"test\": \"hej\"" +
             "}";
 
     private static final String ENCODING = "UTF-8";
@@ -187,18 +190,32 @@ public class AutoWaker {
 
     private static void set() {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
-            Bundle trgrMAC   = readMac(br, "\tTrigger mac: "),
-                   targetMAC = readMac(br, "\tTarget mac: ");
+            Bundle trgrMAC   = readMac(br, "\tTrigger MAC: "),
+                   targetMAC = readMac(br, "\tTarget MAC: ");
 
-            InetAddress ipTarget = readIP(br, "\tTarget IP: ");
+            // TODO needs lots of work
 
+            InetAddress targetIP = readIP(br, "\tTarget IP: ");
+        
             JSONObject mappings = config.getJSONObject("mappings");
-            mappings.put(trgrMAC.stringMAC, targetMAC.stringMAC);
-
             JSONObject devices = config.getJSONObject("devices");
             
             devices.put(targetMAC.stringMAC, targetIP.getHostAddress());
 
+            JSONObject bundle = new JSONObject("{\n" +
+                    "    \"mac\":\"" + targetMAC.stringMAC + "\",\n" +
+                    "    \"ip\":\"" + targetIP.getHostAddress() + "\"\n" +
+                    "}");
+
+            JSONArray targets = mappings.get(trgrMAC.stringMAC);
+
+            if (targets == null) {
+                targets = new JSONArray("[]");
+                targets.push(bundle);
+                mappings.put(trgrMAC.stringMAC, bundle);
+            } else {
+                // TODO push to array
+            }
             saveConfig();
 
         } catch (IOException e) {
@@ -297,7 +314,7 @@ public class AutoWaker {
 
     private static void saveConfig() {
         try (PrintWriter writer = new PrintWriter(CONFIG_FILE_NAME, ENCODING)){
-            String save = JsonHelper.mapToJsonObject(new JSONObject(DEFAULT_DEBUG_CONFIG).toMap());
+            String save = JsonHelper.mapToJsonObject(config.toMap());
 
             writer.println(save);
         } catch (Exception e) {
