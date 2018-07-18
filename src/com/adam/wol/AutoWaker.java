@@ -1,6 +1,8 @@
 package com.adam.wol;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -39,7 +41,7 @@ public class AutoWaker {
     private static final String APP_TITLE = "--- AutoWaker 2000 ---";
 
     private static final String HELP_MSG =
-                    "-start [delay (seconds)]             starts the Waker | default delay = 5s\n" +
+                    "-start [refresh rate (seconds)]      starts the Waker | default r. rate = 5s\n" +
                     "-set                                 sets trigger/target device (mac separators: '-' or ':')\n" +
                     "-list                                list all current mappings\n" +
                     "-l                                   same as -list";
@@ -165,7 +167,7 @@ public class AutoWaker {
                 if (WakeOnLan.compareMacs(triggerMAC, currentMAC)) {
                     print("Triggered!!! Pinging " + targetIP.getHostAddress() + "\t");
 
-                    if (targetIP.isReachable(8080)) {
+                    if (targetIP.isReachable(5000)) { // TODO make timeout configurable
                         println("...and it's ON!");
                     } else {
                         println("...and it's OFF!\n" +
@@ -189,7 +191,8 @@ public class AutoWaker {
     }
 
     private static boolean checkMACTrigger(String mac) {
-        
+
+        return false;
     }
 
     private static void set() {
@@ -203,22 +206,23 @@ public class AutoWaker {
         
             JSONObject mappings = config.getJSONObject("mappings");
             JSONObject devices = config.getJSONObject("devices");
-            
-            devices.put(targetMAC.stringMAC, targetIP.getHostAddress());
+
+            mappings.put(targetMAC.stringMAC, targetIP.getHostAddress());
 
             JSONObject bundle = new JSONObject("{\n" +
                     "    \"mac\":\"" + targetMAC.stringMAC + "\",\n" +
                     "    \"ip\":\"" + targetIP.getHostAddress() + "\"\n" +
                     "}");
 
-            JSONArray targets = mappings.get(trgrMAC.stringMAC);
+            JSONArray targets;
 
-            if (targets == null) {
+            try {
+                targets = mappings.getJSONArray(trgrMAC.stringMAC);
+
+            } catch (JSONException e){
                 targets = new JSONArray("[]");
-                targets.push(bundle);
+                targets.put(bundle);
                 mappings.put(trgrMAC.stringMAC, bundle);
-            } else {
-                // TODO push to array
             }
             saveConfig();
 
@@ -271,7 +275,7 @@ public class AutoWaker {
     }
 
     public static void listMappings() {
-        JSONObject mappings = config.get("mappings");
+        JSONObject mappings = config.getJSONObject("mappings");
 
         //for (int a = 0; a < mappings.lenght; a++) 
 
@@ -332,7 +336,7 @@ public class AutoWaker {
         }
     }
 
-    private static void printErr(String s) {
+    public static void printErr(String s) {
         System.err.println(s);
     }
 

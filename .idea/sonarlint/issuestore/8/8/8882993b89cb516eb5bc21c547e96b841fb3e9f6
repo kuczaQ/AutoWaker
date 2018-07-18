@@ -1,40 +1,26 @@
 
-T
-squid:S1062"9Replace this use of System.out or System.err by a logger.(ºÃƒ¹øÿÿÿÿ
->squid:S1659-"'Declare "targetMAC" on a separate line.(™é¹Í
-gsquid:CommentedOutCodeLine{"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ
-gsquid:CommentedOutCodeLines"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
-?squid:S1148("#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-O
-squid:S106_"9Replace this use of System.out or System.err by a logger.(¥·ŸÛ
-U
-squid:S106¦"9Replace this use of System.out or System.err by a logger.(Ñ¦·þÿÿÿÿ
-^squid:S00112D"FDefine and throw a dedicated exception instead of using a generic one.(´á¸
-Osquid:S1854k"8Remove this useless assignment to local variable "inet".(ŠÛÀ²
-@squid:S1148‹"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-P
-squid:S106Ê"9Replace this use of System.out or System.err by a logger.(È“àâ
-Isquid:S1481‡",Remove this unused "trgrMAC" local variable.(‚ŸŽøÿÿÿÿ
-Psquid:S1068 "4Remove this unused "triggerMACString" private field.(ŽñŸÿÿÿÿÿ
-Esquid:S1313&".Make this IP "10.0.0.44" address configurable.(–¶—
-bsquid:CommentedOutCodeLinel"<This block of commented-out lines of code should be removed.(ñ»Ï
-O
-squid:S106o"9Replace this use of System.out or System.err by a logger.(Òø•¶
-Isquid:S1199M"-Extract this nested code block into a method.(……ÇŠÿÿÿÿÿ
-Isquid:S1199V"-Extract this nested code block into a method.(ÛÄîÉúÿÿÿÿ
-@squid:S1481k")Remove this unused "inet" local variable.(ŠÛÀ²
-P
-squid:S106„"9Replace this use of System.out or System.err by a logger.(Ó“ú
-?squid:S1148>"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-Dsquid:S1199I"-Extract this nested code block into a method.(º¯¦³
-bsquid:CommentedOutCodeLine’"<This block of commented-out lines of code should be removed.(Õ´£q
-U
-squid:S106²"9Replace this use of System.out or System.err by a logger.(£‰Ð­ÿÿÿÿÿ
-hsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ó‘ÏÊýÿÿÿÿ
-Dsquid:S1199Q"-Extract this nested code block into a method.(ÉëÅ¶
-nsquid:CommentedOutCodeLine3"<This block of commented-out lines of code should be removed.(Ö©Äôýÿÿÿÿ8È…µÅ,
-hsquid:CommentedOutCodeLineŽ"<This block of commented-out lines of code should be removed.(Ç£ºìùÿÿÿÿ
-O
-squid:S1061"9Replace this use of System.out or System.err by a logger.(ÒØñø
-O
-squid:S106i"9Replace this use of System.out or System.err by a logger.(”¼˜‚
+Xsquid:S1854›"9Remove this useless assignment to local variable "delay".(ÔúÂª8žèÌìÊ,
+Nsquid:S1481–"*Remove this unused "delay" local variable.(›¾Œ“úÿÿÿÿ8žèÌìÊ,
+Lsquid:S1313V".Make this IP "10.0.0.44" address configurable.(–¶—8žèÌìÊ,
+¤%squid:RedundantThrowsDeclarationCheckd"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8žèÌìÊ,
+Wsquid:S1068P"4Remove this unused "triggerMACString" private field.(ŽñŸÿÿÿÿÿ8žèÌìÊ,
+`squid:S1854”"<Remove this useless assignment to local variable "mappings".(†¦É•ÿÿÿÿÿ8žèÌìÊ,
+Ksquid:S1659È"'Declare "targetMAC" on a separate line.(Ø£´°ùÿÿÿÿ8žèÌìÊ,
+Vsquid:S1135ß"2Complete the task associated to this TODO comment.(Ã¿õåüÿÿÿÿ8žèÌìÊ,
+Fsquid:S1148u"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8žèÌìÊ,
+osquid:CommentedOutCodeLine–"<This block of commented-out lines of code should be removed.(¨’Øùÿÿÿÿ8žèÌìÊ,
+osquid:CommentedOutCodeLine¸"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8žèÌìÊ,
+esquid:S00112{"FDefine and throw a dedicated exception instead of using a generic one.(´á¸8žèÌìÊ,
+Gsquid:S1148Í"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8žèÌìÊ,
+Qsquid:S1481”"-Remove this unused "mappings" local variable.(†¦É•ÿÿÿÿÿ8žèÌìÊ,
+Qsquid:S1199ˆ"-Extract this nested code block into a method.(ÛÄîÉúÿÿÿÿ8žèÌìÊ,
+Lsquid:S1199ƒ"-Extract this nested code block into a method.(ÉëÅ¶8žèÌìÊ,
+Nsquid:S1172À"*Remove this unused method parameter "mac".(€ö¾ðûÿÿÿÿ8žèÌìÊ,
+Fsquid:S1148X"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8žèÌìÊ,
+nsquid:CommentedOutCodeLinej"<This block of commented-out lines of code should be removed.(Ö©Äôýÿÿÿÿ8žèÌìÊ,
+Wsquid:S1854™"9Remove this useless assignment to local variable "delay".(ÿ…Ë8žèÌìÊ,
+Gsquid:S1148ä"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8žèÌìÊ,
+fsquid:UnusedPrivateMethodÀ"4Remove this unused private "checkMACTrigger" method.(€ö¾ðûÿÿÿÿ8žèÌìÊ,
+Psquid:S1199"-Extract this nested code block into a method.(……ÇŠÿÿÿÿÿ8žèÌìÊ,
+Esquid:S1659]"'Declare "targetMAC" on a separate line.(™é¹Í8žèÌìÊ,
+Vsquid:S1135Ê"2Complete the task associated to this TODO comment.(Ï˜Ÿ¥ùÿÿÿÿ8žèÌìÊ,
