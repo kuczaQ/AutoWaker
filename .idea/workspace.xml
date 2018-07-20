@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06a641bd-5362-4e68-aaff-bf6a91179696" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/adam/wol/AutoWakerSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/8882993b89cb516eb5bc21c547e96b841fb3e9f6" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/8882993b89cb516eb5bc21c547e96b841fb3e9f6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoWaker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AutoWaker.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/adam/util/JsonHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoWaker/adam/util/JsonHelper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/com/adam/wol/AutoWaker$Bundle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoWaker/com/adam/wol/AutoWaker$Bundle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/com/adam/wol/AutoWaker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoWaker/com/adam/wol/AutoWaker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoWaker/config.json" afterDir="false" />
@@ -35,6 +34,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/org/json/XML$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoWaker/org/json/XML$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/org/json/XML.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoWaker/org/json/XML.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoWaker/org/json/XMLTokener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoWaker/org/json/XMLTokener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/adam/util/JsonHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/adam/util/JsonHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,45 +45,84 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AutoWaker.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="206" column="67" lean-forward="true" selection-start-line="206" selection-start-column="67" selection-end-line="206" selection-end-column="67" />
-              <folding>
-                <element signature="e#399#430#0" expanded="true" />
-                <element signature="e#4289#4321#0" expanded="true" />
-                <element signature="e#10022#10023#0" expanded="true" />
-                <element signature="e#10059#10060#0" expanded="true" />
-                <element signature="e#10103#10104#0" expanded="true" />
-                <element signature="e#10140#10141#0" expanded="true" />
-                <element signature="e#10186#10187#0" expanded="true" />
-                <element signature="e#10225#10226#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WakeOnLan.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/adam/wol/WakeOnLan.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-163">
-              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArgStream.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/adam/wol/ArgStream.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.50625">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="AutoWaker.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="546">
+                  <caret line="199" column="79" selection-start-line="199" selection-start-column="79" selection-end-line="199" selection-end-column="79" />
+                  <folding>
+                    <element signature="e#430#461#0" expanded="true" />
+                    <element signature="e#4322#4354#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="WakeOnLan.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/adam/wol/WakeOnLan.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ArgStream.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/adam/wol/ArgStream.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="JsonHelper.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/adam/util/JsonHelper.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="57" column="52" lean-forward="true" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AutoWakerSettings.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWakerSettings.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="767">
+                  <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#942#943#0" expanded="true" />
+                    <element signature="e#1003#1004#0" expanded="true" />
+                    <element signature="e#2173#2174#0" expanded="true" />
+                    <element signature="e#2230#2231#0" expanded="true" />
+                    <element signature="e#2266#2267#0" expanded="true" />
+                    <element signature="e#2321#2322#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -92,14 +131,20 @@
       <find>&quot;(\{|,|\{)</find>
       <find>&quot;,</find>
       <find>&quot;.*(\{|,|\{).*&quot;</find>
+      <find>loadConfig();</find>
+      <find>oj</find>
     </findStrings>
     <replaceStrings>
       <replace>println</replace>
       <replace>tempRes</replace>
+      <replace>settings.save();</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWakerSettings.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -108,13 +153,14 @@
         <option value="$PROJECT_DIR$/src/com/adam/wol/WakeOnLan.java" />
         <option value="$PROJECT_DIR$/src/adam/util/JsonHelper.java" />
         <option value="$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java" />
+        <option value="$PROJECT_DIR$/src/com/adam/wol/AutoWakerSettings.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
+    <option name="width" value="1089" />
     <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -156,7 +202,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -173,12 +218,19 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="AutoWaker" type="cbb8eebc:String" user="AutoWaker" />
               <item name="src" type="cbb8eebc:String" user="src" />
+              <item name="adam/util" type="cbb8eebc:String" user="adam/util" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="AutoWaker" type="cbb8eebc:String" user="AutoWaker" />
+              <item name="src" type="cbb8eebc:String" user="src" />
               <item name="com/adam/wol" type="cbb8eebc:String" user="com/adam/wol" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -187,7 +239,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -289,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531245473691</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update from work">
+      <created>1531925896531</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1531925896531</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -304,22 +363,23 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="1" />
+      <window_info anchor="bottom" x="-1" y="1111" width="731" height="1048" id="Run" order="10" sideWeight="0.49946696" side_tool="true" type="WINDOWED" visible="true" weight="0.37823835" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" x="-1" y="1111" width="731" height="1048" id="Run" order="10" sideWeight="0.49946696" side_tool="true" type="WINDOWED" visible="true" weight="0.37823835" />
-      <window_info anchor="bottom" auto_hide="true" x="732" y="1111" width="1185" height="1048" id="Terminal" order="11" sideWeight="0.50053304" type="WINDOWED" visible="true" weight="0.32331607" />
+      <window_info active="true" anchor="bottom" auto_hide="true" x="731" y="1114" width="1185" height="1048" id="Terminal" order="11" sideWeight="0.50053304" type="WINDOWED" visible="true" weight="0.32331607" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.09808102" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.10989583" />
       <window_info anchor="bottom" id="SonarLint" order="1" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info id="UI Designer" order="0" />
       <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3985729" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.39918947" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" order="2" weight="0.4" />
+      <window_info anchor="right" x="0" y="0" width="434" height="896" id="Documentation" side_tool="true" weight="0.3296875" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="3" />
@@ -329,35 +389,29 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
     <MESSAGE value="updated set" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated set" />
+    <MESSAGE value="update from work" />
+    <option name="LAST_COMMIT_MESSAGE" value="update from work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/adam/util/JsonHelper.java</url>
-          <line>73</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/adam/util/JsonHelper.java</url>
-          <line>66</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="mapToJsonObject((Map&lt;String, Object&gt;) val)" language="JAVA" />
+        <watch expression="config.toString()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>config.toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>mapToJsonObject((Map&lt;String, Object&gt;) val)</expression-string>
         <language-id>JAVA</language-id>
@@ -368,17 +422,61 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2983">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="e#430#461#0" expanded="true" />
+            <element signature="e#4322#4354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/WakeOnLan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/ArgStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3090">
+          <caret line="206" column="67" lean-forward="true" selection-start-line="206" selection-start-column="67" selection-end-line="206" selection-end-column="67" />
+          <folding>
+            <element signature="e#430#461#0" expanded="true" />
+            <element signature="e#4322#4354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/WakeOnLan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/ArgStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4740">
           <caret line="316" column="29" selection-start-line="316" selection-start-column="29" selection-end-line="316" selection-end-column="29" />
           <folding>
-            <element signature="e#399#430#0" expanded="true" />
-            <element signature="e#4289#4321#0" expanded="true" />
-            <element signature="e#10022#10023#0" expanded="true" />
-            <element signature="e#10059#10060#0" expanded="true" />
-            <element signature="e#10103#10104#0" expanded="true" />
-            <element signature="e#10140#10141#0" expanded="true" />
-            <element signature="e#10186#10187#0" expanded="true" />
-            <element signature="e#10225#10226#0" expanded="true" />
+            <element signature="e#430#461#0" expanded="true" />
+            <element signature="e#4322#4354#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -468,16 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/adam/util/JsonHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/io/FileReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
@@ -492,20 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/ArgStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/WakeOnLan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/JSON-java.jar!/org/json/JSONObject.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
@@ -513,19 +587,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/WakeOnLan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/ArgStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/adam/util/JsonHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="57" column="52" lean-forward="true" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWaker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="206" column="67" lean-forward="true" selection-start-line="206" selection-start-column="67" selection-end-line="206" selection-end-column="67" />
+        <state relative-caret-position="546">
+          <caret line="199" column="79" selection-start-line="199" selection-start-column="79" selection-end-line="199" selection-end-column="79" />
           <folding>
-            <element signature="e#399#430#0" expanded="true" />
-            <element signature="e#4289#4321#0" expanded="true" />
-            <element signature="e#10022#10023#0" expanded="true" />
-            <element signature="e#10059#10060#0" expanded="true" />
-            <element signature="e#10103#10104#0" expanded="true" />
-            <element signature="e#10140#10141#0" expanded="true" />
-            <element signature="e#10186#10187#0" expanded="true" />
-            <element signature="e#10225#10226#0" expanded="true" />
+            <element signature="e#430#461#0" expanded="true" />
+            <element signature="e#4322#4354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/adam/wol/AutoWakerSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#942#943#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#2173#2174#0" expanded="true" />
+            <element signature="e#2230#2231#0" expanded="true" />
+            <element signature="e#2266#2267#0" expanded="true" />
+            <element signature="e#2321#2322#0" expanded="true" />
           </folding>
         </state>
       </provider>

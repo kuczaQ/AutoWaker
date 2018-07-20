@@ -6,11 +6,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -46,41 +43,28 @@ public class AutoWaker {
                     "-list                                list all current mappings\n" +
                     "-l                                   same as -list";
 
-    private static final String CONFIG_FILE_NAME = "config.json";
 
-    private static final String DEFAULT_CONFIG =
-            "{\n" +
-            "    \"devices\": {\n" +
-            "        \n" +
-            "    },\n" +
-            "    \"mappings\": {\n" +
-            "        \n" +
-            "    }\n" +
-            "}";
 
-    private static final String DEFAULT_DEBUG_CONFIG =
-            "{\n" +
-            "    \"devices\": {\n" +
-            "         " +
-            "    },\n" +
-            "    \"mappings\": {\n" +
-            "        \"2c-30-33-29-7d-ef\": \"44-8a-5b-d5-f1-85\",\n" +
-                    "\"oj\": {" +
-                        "\"ico\": \"teraz\"" +
-                    "}" +
-                "}, \"test\": \"hej\"" +
-            "}";
+//    private static final String DEFAULT_DEBUG_CONFIG =
+//            "{\n" +
+//            "    \"devices\": {\n" +
+//            "         " +
+//            "    },\n" +
+//            "    \"mappings\": {\n" +
+//            "        \"2c-30-33-29-7d-ef\": \"44-8a-5b-d5-f1-85\",\n" +
+//                    "\"oj\": {" +
+//                        "\"ico\": \"teraz\"" +
+//                    "}" +
+//                "}, \"test\": \"hej\"" +
+//            "}";
 
-    private static final String ENCODING = "UTF-8";
+
 
     // Static variables
-    private static JSONObject config;
-
+    private static AutoWakerSettings settings;
     private static ArgStream argStream;
-
-    private static String triggerMACString = null;
-
     private static InetAddress targetIP;
+    private static String triggerMACString = null;
 
     static {
         try {
@@ -99,15 +83,16 @@ public class AutoWaker {
     ////////////
 
     public static void main(String[] args) throws IOException {
-        loadConfig();
-
+        settings = new AutoWakerSettings();
+        settings.load();
         if (args.length == 0) {
             println(START_MSG);
             println(HELP_MSG);
             //runArpA();
-            saveConfig();
+            settings.save();
             System.exit(0);
         }
+
 
         argStream = new ArgStream(args);
 
@@ -204,27 +189,16 @@ public class AutoWaker {
 
             InetAddress targetIP = readIP(br, "\tTarget IP: ");
         
-            JSONObject mappings = config.getJSONObject("mappings");
-            JSONObject devices = config.getJSONObject("devices");
+            JSONObject mappings = settings.getMappings();
+            JSONObject devices = settings.getDevices();
 
-            mappings.put(targetMAC.stringMAC, targetIP.getHostAddress());
+            //mappings.put(trgrMAC.stringMAC, targetMAC.stringMAC);
 
-            JSONObject bundle = new JSONObject("{\n" +
-                    "    \"mac\":\"" + targetMAC.stringMAC + "\",\n" +
-                    "    \"ip\":\"" + targetIP.getHostAddress() + "\"\n" +
-                    "}");
+            JSONObject bundle = AutoWakerSettings.createDeviceBundle(targetIP.getHostAddress());
 
-            JSONArray targets;
-
-            try {
-                targets = mappings.getJSONArray(trgrMAC.stringMAC);
-
-            } catch (JSONException e){
-                targets = new JSONArray("[]");
-                targets.put(bundle);
-                mappings.put(trgrMAC.stringMAC, bundle);
-            }
-            saveConfig();
+            settings.addMapping(trgrMAC.stringMAC, targetMAC.stringMAC);
+            settings.addDeviceIp(targetMAC.stringMAC, targetIP.getHostAddress());
+            settings.save();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -275,14 +249,14 @@ public class AutoWaker {
     }
 
     public static void listMappings() {
-        JSONObject mappings = config.getJSONObject("mappings");
+        JSONObject mappings = settings.getMappings();
 
         //for (int a = 0; a < mappings.lenght; a++) 
 
 
         String out = HexConverter.parseMAC(triggerMAC) +
-                " -> " +
-                HexConverter.parseMAC(targetMAC);
+                     " -> " +
+                     HexConverter.parseMAC(targetMAC);
 
         println(out);
     }
@@ -314,26 +288,6 @@ public class AutoWaker {
             }
         }
         return res;
-    }
-
-    private static void loadConfig() {
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("./" + CONFIG_FILE_NAME)))) {
-            String json = JsonHelper.readerToString(br);
-            config = new JSONObject(json);
-        } catch (Exception e) {
-            config = new JSONObject(DEFAULT_CONFIG);
-        }
-    }
-
-    private static void saveConfig() {
-        try (PrintWriter writer = new PrintWriter(CONFIG_FILE_NAME, ENCODING)){
-            String save = JsonHelper.mapToJsonObject(config.toMap());
-
-            writer.println(save);
-        } catch (Exception e) {
-            e.printStackTrace();
-            printErr("Cannot create config file! Make sure you have sufficient rights.");
-        }
     }
 
     public static void printErr(String s) {
