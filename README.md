@@ -1,7 +1,7 @@
 # AutoWaker
 Sends Wake-on-Lan based on active devices in the network.
 
-# Compile 
+# Compile (Not anymore)
     ./src$ javac -cp . com.adam.wol.WakeOnLan
 
 # MAN

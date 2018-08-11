@@ -1,5 +1,7 @@
 package adam.util;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,22 +43,15 @@ public class JsonHelper {
             if (val instanceof List) {
                 List<?> list = (List<?>) val;
 
-                if (list.size() > 1) {
-                    StringBuilder builder = new StringBuilder("[");
+                StringBuilder builder = new StringBuilder("[\n\t\t");
 
-                    for (Object o : list) {
-                        builder.append("\"" + o.toString() + "\",\n");
-                    }
-
-                    builder.replace(builder.length()-1, builder.length(), "]");
-                    valOut = builder.toString();
-                } else {
-                    try {
-                        valOut = list.get(0).toString();
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        // Empty array -> leave valOut empty
-                    }
+                for (Object o : list) {
+                    builder.append("\"" + o.toString() + "\",\n\t\t");
                 }
+
+                builder.replace(builder.length()-4, builder.length(), "\n\t]");
+                valOut = builder.toString();
+
             } else if (val instanceof Map) {
                 valOut = mapToJsonObject((Map<String, Object>) val);
 
@@ -67,12 +62,9 @@ public class JsonHelper {
                 for (int a = 1; a < lines.length; a++)
                     tempOut.append("\t" + lines[a] + "\n");
 
-         //       valOut.replaceAll("\n\t", "\n\t\t");
-//                tempRes.replace(0, 1, "");
                 tempOut.replace(tempOut.length()-1, tempOut.length(), "");
                 valOut = tempOut.toString();
-                System.out.println();
-                //valOut = tempRes.toString();
+
             } else {
                 isString = true;
                 valOut = val.toString();
