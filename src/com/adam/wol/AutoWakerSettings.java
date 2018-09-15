@@ -1,6 +1,6 @@
 package com.adam.wol;
 
-import adam.util.JsonHelper;
+import com.adam.util.JsonHelper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

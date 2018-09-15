@@ -1,4 +1,4 @@
-package com.adam.wol;
+package com.adam.util;
 
 public class ArgStream {
     String[] args;

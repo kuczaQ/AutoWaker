@@ -1,8 +1,6 @@
 package com.adam.wol;
 
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -13,7 +11,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-import adam.util.JsonHelper;
+import com.adam.util.ArgStream;
 
 
 @SuppressWarnings("squid:S106")

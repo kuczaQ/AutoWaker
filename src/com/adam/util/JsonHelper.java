@@ -1,4 +1,4 @@
-package adam.util;
+package com.adam.util;
 
 import org.json.JSONObject;
 
