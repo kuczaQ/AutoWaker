@@ -10,6 +10,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import com.adam.util.ArgStream;
 
@@ -277,17 +278,38 @@ public class AutoWaker {
         ProcessBuilder builder = new ProcessBuilder(
                 "cmd.exe", "/c", "arp -a");
 
-        return runArpA(builder, "^(?![a-zA-Z]).*[0-9].*", print);
+        return runArpA(
+                builder,
+                "^(?![a-zA-Z]).*[0-9].*",
+                print,
+                line -> line
+                        .replaceAll("\\s+", " ")
+                        .trim()
+                        .split("\\s")
+        );
     }
 
     public static List<String[]> runArpLinux (boolean print) throws IOException {
         ProcessBuilder builder = new ProcessBuilder(
                 "bash", "arp -a");
 
-        return runArpA(builder, "^(?![a-zA-Z]).*[0-9].*", print);
+        return runArpA(builder,
+                "^.*$",
+                print,
+                line -> line
+                        .replaceAll("\\s*\\[ether.*$", "")
+                        .replaceAll("^\\?\\s*\\(", "")
+                        .replaceAll("\\)\\s*at\\s*", " ") // <-- Space
+                        .trim()
+                        .split("\\s")
+        );
     }
 
-    public static List<String[]> runArpA(ProcessBuilder processBuilder, String regex, boolean print) throws IOException {
+    public static List<String[]> runArpA(
+            ProcessBuilder processBuilder,
+            String regex,
+            boolean print,
+            Function<String, String[]> processLine) throws IOException {
 
         processBuilder.redirectErrorStream(true);
         Process p = processBuilder.start();
@@ -301,10 +323,7 @@ public class AutoWaker {
             if (line == null) { break; }
 
             if (line.matches(regex)) {
-                String[] extractedLine = line
-                                            .replaceAll("\\s+", " ")
-                                            .trim()
-                                            .split("\\s");
+                String[] extractedLine = processLine.apply(line);
 
                 res.add(extractedLine);
 
