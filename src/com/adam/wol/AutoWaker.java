@@ -284,7 +284,7 @@ public class AutoWaker {
         ProcessBuilder builder = new ProcessBuilder(
                 "bash", "arp -a");
 
-        return runArpA(builder, "^(?![a-zA-Z]).*[0-9].*", print);
+        return runArpA(builder,  "\\?\\s*\\(|\\)\\s*at\\s*|\\s*\\[ether.*$", print);
     }
 
     public static List<String[]> runArpA(ProcessBuilder processBuilder, String regex, boolean print) throws IOException {
@@ -304,7 +304,7 @@ public class AutoWaker {
                 String[] extractedLine = line
                                             .replaceAll("\\s+", " ")
                                             .trim()
-                                            .split("\\s");
+                                            .split(_isWindows ? "\\s" : regex);
 
                 res.add(extractedLine);
 
