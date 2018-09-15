@@ -55,7 +55,7 @@ public class AutoWaker {
 //                    "}" +
 //                "}, \"test\": \"hej\"" +
 //            "}";
-it st
+
 
 
     // Static variables
