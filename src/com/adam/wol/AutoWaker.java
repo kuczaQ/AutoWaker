@@ -143,8 +143,9 @@ public class AutoWaker {
         while (true) {
             println("Checking MACs...");
 
-            List<String[]> macs = runArpA(false);
+            List<String[]> macs = runArpA(true);
 
+            if (false)
             for (String[] sArr : macs) {
                 byte[] currentMAC = WakeOnLan.getMacBytes(sArr[1]);
                 if (WakeOnLan.compareMacs(triggerMAC, currentMAC)) {
