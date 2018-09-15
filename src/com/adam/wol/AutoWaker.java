@@ -63,6 +63,8 @@ public class AutoWaker {
     private static ArgStream argStream;
     private static InetAddress targetIP;
     private static String triggerMACString = null;
+    private static boolean isWindows = false;
+    private static boolean isLinux = false;
 
     static {
         try {
@@ -70,6 +72,8 @@ public class AutoWaker {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
+
+        print(System.getProperty("os.name"));
     }
 
     private static byte[] triggerMAC = WakeOnLan.getMacBytes("2c-30-33-29-7d-ef"),
@@ -143,8 +147,11 @@ public class AutoWaker {
         while (true) {
             println("Checking MACs...");
 
-            List<String[]> macs = runArpA(false);
+            List<String[]> macs;
 
+            //= runArpA(true);
+
+            if (false)
             for (String[] sArr : macs) {
                 byte[] currentMAC = WakeOnLan.getMacBytes(sArr[1]);
                 if (WakeOnLan.compareMacs(triggerMAC, currentMAC)) {
@@ -249,7 +256,7 @@ public class AutoWaker {
     public static void listMappings() {
         JSONObject mappings = settings.getMappings();
 
-        //for (int a = 0; a < mappings.lenght; a++) 
+        //for (int a = 0; a < mappings.lenght; a++)
 
 
         String out = HexConverter.parseMAC(triggerMAC) +
@@ -259,11 +266,24 @@ public class AutoWaker {
         println(out);
     }
 
-    public static List<String[]> runArpA(boolean print) throws IOException {
+    public static List<String[]> runArpWin (boolean print) throws IOException {
         ProcessBuilder builder = new ProcessBuilder(
                 "cmd.exe", "/c", "arp -a");
-        builder.redirectErrorStream(true);
-        Process p = builder.start();
+
+        return runArpA(builder, "^(?![a-zA-Z]).*[0-9].*", print);
+    }
+
+    public static List<String[]> runArpLinux (boolean print) throws IOException {
+        ProcessBuilder builder = new ProcessBuilder(
+                "bash", "arp -a");
+
+        return runArpA(builder, "^(?![a-zA-Z]).*[0-9].*", print);
+    }
+
+    public static List<String[]> runArpA(ProcessBuilder processBuilder, String regex, boolean print) throws IOException {
+
+        processBuilder.redirectErrorStream(true);
+        Process p = processBuilder.start();
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line;
         List<String[]> res = new ArrayList<>();
@@ -273,7 +293,7 @@ public class AutoWaker {
 
             if (line == null) { break; }
 
-            if (line.matches("^(?![a-zA-Z]).*[0-9].*")) {
+            if (line.matches(regex)) {
                 String[] extractedLine = line
                                             .replaceAll("\\s+", " ")
                                             .trim()
