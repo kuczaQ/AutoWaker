@@ -59,21 +59,25 @@ public class AutoWaker {
 
 
     // Static variables
-    private static AutoWakerSettings settings;
-    private static ArgStream argStream;
-    private static InetAddress targetIP;
-    private static String triggerMACString = null;
-    private static boolean isWindows = false;
-    private static boolean isLinux = false;
+    private static AutoWakerSettings _settings;
+    private static ArgStream _argStream;
+    private static InetAddress _targetIP;
+    private static String _triggerMACString = null;
+    private static boolean _isWindows = false;
+    private static boolean _isLinux = false;
 
     static {
         try {
-            targetIP = InetAddress.getByName("10.0.0.44");
+            _targetIP = InetAddress.getByName("10.0.0.44");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
 
-        print(System.getProperty("os.name"));
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("windows"))
+            _isWindows = true;
+        else if (os.contains("linux"))
+            _isLinux = true;
     }
 
     private static byte[] triggerMAC = WakeOnLan.getMacBytes("2c-30-33-29-7d-ef"),
@@ -85,18 +89,18 @@ public class AutoWaker {
     ////////////
 
     public static void main(String[] args) throws IOException {
-        settings = new AutoWakerSettings();
-        settings.load();
+        _settings = new AutoWakerSettings();
+        _settings.load();
         if (args.length == 0) {
             println(START_MSG);
             println(HELP_MSG);
             //runArpA();
-            settings.save();
+            _settings.save();
             System.exit(0);
         }
 
 
-        argStream = new ArgStream(args);
+        _argStream = new ArgStream(args);
 
         try {
             parseCommands();
@@ -109,7 +113,7 @@ public class AutoWaker {
     }
 
     private static void parseCommands() throws Exception {
-        String cmd = argStream.getNext();
+        String cmd = _argStream.getNext();
 
         switch (cmd) {
             case "-start": {
@@ -138,7 +142,7 @@ public class AutoWaker {
         int delay;
 
         try {
-            delay = argStream.getNextInt() * 1000;
+            delay = _argStream.getNextInt() * 1000;
         } catch (Exception e) {
             delay = 5000;
         }
@@ -149,21 +153,24 @@ public class AutoWaker {
 
             List<String[]> macs;
 
-            //= runArpA(true);
+            if (_isWindows)
+                macs = runArpWin(false);
+            else if (_isLinux)
+                macs = runArpLinux(true);
 
             if (false)
             for (String[] sArr : macs) {
                 byte[] currentMAC = WakeOnLan.getMacBytes(sArr[1]);
                 if (WakeOnLan.compareMacs(triggerMAC, currentMAC)) {
-                    print("Triggered!!! Pinging " + targetIP.getHostAddress() + "\t");
+                    print("Triggered!!! Pinging " + _targetIP.getHostAddress() + "\t");
 
-                    if (targetIP.isReachable(5000)) { // TODO make timeout configurable
+                    if (_targetIP.isReachable(5000)) { // TODO make timeout configurable
                         println("...and it's ON!");
                     } else {
                         println("...and it's OFF!\n" +
                                            "Sending WoL...");
 
-                        WakeOnLan.sendWoL(targetIP, targetMAC, "Wake-on-LAN packet sent.");
+                        WakeOnLan.sendWoL(_targetIP, targetMAC, "Wake-on-LAN packet sent.");
                     }
 
                     break;
@@ -194,16 +201,16 @@ public class AutoWaker {
 
             InetAddress targetIP = readIP(br, "\tTarget IP: ");
         
-            JSONObject mappings = settings.getMappings();
-            JSONObject devices = settings.getDevices();
+            JSONObject mappings = _settings.getMappings();
+            JSONObject devices = _settings.getDevices();
 
             //mappings.put(trgrMAC.stringMAC, targetMAC.stringMAC);
 
             JSONObject bundle = AutoWakerSettings.createDeviceBundle(targetIP.getHostAddress());
 
-            settings.addMapping(trgrMAC.stringMAC, targetMAC.stringMAC);
-            settings.addDeviceIp(targetMAC.stringMAC, targetIP.getHostAddress());
-            settings.save();
+            _settings.addMapping(trgrMAC.stringMAC, targetMAC.stringMAC);
+            _settings.addDeviceIp(targetMAC.stringMAC, targetIP.getHostAddress());
+            _settings.save();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -254,7 +261,7 @@ public class AutoWaker {
     }
 
     public static void listMappings() {
-        JSONObject mappings = settings.getMappings();
+        JSONObject mappings = _settings.getMappings();
 
         //for (int a = 0; a < mappings.lenght; a++)
 
