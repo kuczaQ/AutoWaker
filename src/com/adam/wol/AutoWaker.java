@@ -1,6 +1,7 @@
 package com.adam.wol;
 
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -162,8 +163,7 @@ public class AutoWaker {
                 throw new RuntimeException("OS not supported!");
 
             for (String[] sArr : macs) {
-                byte[] currentMAC = WakeOnLan.getMacBytes(sArr[1]);
-                if (WakeOnLan.compareMacs(triggerMAC, currentMAC)) {
+                if (checkMACTrigger(sArr[1])) {
                     print("Triggered!!! Pinging " + _targetIP.getHostAddress() + "\t");
 
                     if (_targetIP.isReachable(5000)) { // TODO make timeout configurable
@@ -179,8 +179,6 @@ public class AutoWaker {
                 }
             }
 
-
-
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
@@ -190,8 +188,14 @@ public class AutoWaker {
     }
 
     private static boolean checkMACTrigger(String mac) {
+        JSONObject mappings = _settings.getMappings();
 
-        return false;
+        try {
+            mappings.getJSONObject(mac);
+            return true;
+        } catch (JSONException e) {
+            return false;
+        }
     }
 
     private static void set() {

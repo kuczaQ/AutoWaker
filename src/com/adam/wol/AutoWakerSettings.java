@@ -104,19 +104,19 @@ public class AutoWakerSettings {
     }
 
     public void addDeviceIp(String mac, String ip) {
-        JSONObject device;
-
-        try {
-            device = getDevices().getJSONObject(mac);
-        } catch (JSONException e) {
-            device = new JSONObject();
-        }
-
+        JSONObject device = getDevice(mac);
         device.put("ip", ip);
         getDevices().put(mac, device);
 //        getMappings().put(trigger, targets);
     }
 
+    public JSONObject getDevice(String mac) {
+        try {
+            return getDevices().getJSONObject(mac);
+        } catch (JSONException e) {
+            return new JSONObject();
+        }
+    }
     //////////////////////
     //  STATIC METHODS  //
     //////////////////////
