@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./00_build.sh && ./10_start.sh
+./00_build.sh && ./10_start.sh "$@"
