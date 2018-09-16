@@ -295,7 +295,11 @@ public class AutoWaker {
                 "bash", "-c", "nmap -sn 10.0.0.0/24");
         nmap.redirectErrorStream(true);
         Process p = nmap.start();
-
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ProcessBuilder builder = new ProcessBuilder(
                 "bash", "-c", "arp -a");
 
