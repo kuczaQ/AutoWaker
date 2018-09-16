@@ -188,10 +188,8 @@ public class AutoWaker {
     }
 
     private static boolean checkMACTrigger(String mac) {
-        JSONObject mappings = _settings.getMappings();
-
         try {
-            mappings.getJSONObject(mac);
+            _settings.getMappings().getJSONArray(mac);
             return true;
         } catch (JSONException e) {
             return false;
