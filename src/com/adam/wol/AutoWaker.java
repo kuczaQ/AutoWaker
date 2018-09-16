@@ -158,8 +158,9 @@ public class AutoWaker {
                 macs = runArpWin(false);
             else if (_isLinux)
                 macs = runArpLinux(true);
+            else
+                throw new RuntimeException("OS not supported!");
 
-            if (false)
             for (String[] sArr : macs) {
                 byte[] currentMAC = WakeOnLan.getMacBytes(sArr[1]);
                 if (WakeOnLan.compareMacs(triggerMAC, currentMAC)) {
@@ -178,13 +179,13 @@ public class AutoWaker {
                 }
             }
 
-            break;
 
-//            try {
-//                Thread.sleep(delay);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
