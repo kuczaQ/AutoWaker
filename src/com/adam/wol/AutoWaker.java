@@ -291,7 +291,7 @@ public class AutoWaker {
 
     public static List<String[]> runArpLinux (boolean print) throws IOException {
         ProcessBuilder builder = new ProcessBuilder(
-                "bash", "arp -a");
+                "bash", "-c", "arp -a");
 
         return runArpA(builder,
                 "^.*$",
