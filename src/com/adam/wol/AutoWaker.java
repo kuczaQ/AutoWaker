@@ -163,16 +163,17 @@ public class AutoWaker {
                 throw new RuntimeException("OS not supported!");
 
             for (String[] sArr : macs) {
+                InetAddress targetIP = InetAddress.getByName(sArr[0]);
                 if (checkMACTrigger(sArr[1])) {
-                    print("Triggered!!! Pinging " + _targetIP.getHostAddress() + "\t");
+                    print("Triggered!!! Pinging " + targetIP.getHostAddress() + "\t");
 
-                    if (_targetIP.isReachable(5000)) { // TODO make timeout configurable
+                    if (targetIP.isReachable(5000)) { // TODO make timeout configurable
                         println("...and it's ON!");
                     } else {
                         println("...and it's OFF!\n" +
                                            "Sending WoL...");
 
-                        WakeOnLan.sendWoL(_targetIP, targetMAC, "Wake-on-LAN packet sent.");
+                        WakeOnLan.sendWoL(targetIP, WakeOnLan.getMacBytes(sArr[1]), "Wake-on-LAN packet sent.");
                     }
 
                     break;
