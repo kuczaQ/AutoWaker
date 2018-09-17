@@ -9,6 +9,8 @@ RED='\033[0;31m'
 echo -e "${BLUE}Pulling from git...${NC}"
 git pull && \
 
+[ -d ./build  ] || mkdir ./build   &&\
+
 echo -e "${BLUE}Compiling...${NC}" &&\
 javac ./src/com/adam/*/*.java -cp libs/*.jar -d ./build &&\
 echo -e "${GREEN}Success!${NC}" ||\

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -cp ./build:./libs/* com.adam.wol.AutoWaker "$@"
+sudo java -cp ./build:./libs/* com.adam.wol.AutoWaker "$@"
