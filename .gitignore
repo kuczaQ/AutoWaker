@@ -4,4 +4,4 @@ bin/*
 out/*
 build/*
 ./AutoWaker.iml
-
+config.json
