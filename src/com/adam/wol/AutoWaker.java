@@ -1,6 +1,7 @@
 package com.adam.wol;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -163,18 +164,11 @@ public class AutoWaker {
                 throw new RuntimeException("OS not supported!");
 
             for (String[] sArr : macs) {
-                InetAddress targetIP = InetAddress.getByName(sArr[0]);
+                InetAddress targetIP = InetAddress.getByName("");
                 if (checkMACTrigger(sArr[1])) {
-                    print("Triggered!!! Pinging " + targetIP.getHostAddress() + "\t");
+                    println("Triggered!!!");
 
-                    if (targetIP.isReachable(5000)) { // TODO make timeout configurable
-                        println("...and it's ON!");
-                    } else {
-                        println("...and it's OFF!\n" +
-                                           "Sending WoL...");
-
-                        WakeOnLan.sendWoL(targetIP, WakeOnLan.getMacBytes(sArr[1]), "Wake-on-LAN packet sent.");
-                    }
+                    wakeTargets(sArr[1]);
 
                     break;
                 }
@@ -185,6 +179,38 @@ public class AutoWaker {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private static void wakeTargets(String mac) throws IOException {
+        JSONArray targets  = _settings.getMappings().getJSONArray(mac);
+        JSONObject devices = _settings.getDevices();
+        InetAddress targetIP;
+
+        for (Object targetMac : targets) {
+            try {
+                String ip = devices.getJSONObject(targetMac + "").getString("ip");
+                pingAndWake(ip, targetMac + "");
+            } catch (JSONException e) {
+                throw new RuntimeException(targetMac + " was not found in the config file!" +
+                                           "Check 'devices." + targetMac + ".ip'.");
+            }
+        }
+
+
+    }
+
+    private static void pingAndWake(String ip, String mac) throws IOException {
+        InetAddress targetIP = InetAddress.getByName(ip);
+        print("Pinging " + targetIP.getHostAddress() + "\t");
+
+        if (targetIP.isReachable(5000)) { // TODO make timeout configurable
+            println("...and it's ON!");
+        } else {
+            println("...and it's OFF!\n" +
+                    "Sending WoL...");
+
+            WakeOnLan.sendWoL(targetIP, WakeOnLan.getMacBytes(mac), "Wake-on-LAN packet sent.");
         }
     }
 
