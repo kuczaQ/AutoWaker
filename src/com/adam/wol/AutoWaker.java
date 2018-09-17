@@ -320,25 +320,14 @@ public class AutoWaker {
     }
 
     public static List<String[]> runArpLinux (boolean print) throws IOException {
-        ProcessBuilder nmap = new ProcessBuilder(
-                "bash", "-c", "nmap -sn 10.0.0.0/24");
-        nmap.redirectErrorStream(true);
-        Process p = nmap.start();
-        try {
-            p.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         ProcessBuilder builder = new ProcessBuilder(
-                "bash", "-c", "arp -a");
+                "bash", "-c", "arp-scan -l");
 
         return runArpA(builder,
                 "^.*$",
                 print,
                 line -> line
-                        .replaceAll("\\s*\\[ether.*$", "")
-                        .replaceAll("^\\?\\s*\\(", "")
-                        .replaceAll("\\)\\s*at\\s*", " ") // <-- Space
+                        .replaceAll("\\s+", " ")
                         .trim()
                         .split("\\s")
         );
