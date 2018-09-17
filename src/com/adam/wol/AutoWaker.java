@@ -324,7 +324,7 @@ public class AutoWaker {
                 "bash", "-c", "arp-scan -l");
 
         return runArpA(builder,
-                "^.*$",
+                "^(?![a-zA-Z]).*[0-9]{1,3}\\..*",
                 print,
                 line -> line
                         .replaceAll("\\s+", " ")
